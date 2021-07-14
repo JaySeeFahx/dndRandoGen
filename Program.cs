@@ -9,19 +9,35 @@ namespace dndRandoGen
     {
         public static void Main(string[] args)
         {
-            List<string> races = new() { "Orc", "Human", "Elf", "Gnome", "Halfling" };
-            List<string> classes = new() { "Warrior", "Bard", "Wizard", "Cleric", "Rogue" };
-            List<string> genders = new() { "Male", "Female", "Non-Binary", "Trans-Masc", "Trans-Femme" };
+            bool showMenu = true;
+            while (showMenu)
+            {
+                showMenu = MainMenu();
+            }
         }
-        private static string Randomize(List<string> list)
+        private static bool MainMenu()
         {
-            Random random = new();
-            int index = random.Next(list.Count);
-            string rand = list[index];
-            return rand;
+            Console.Clear();
+            Console.WriteLine("Welcome Adventurer!");
+            Console.WriteLine("Please choose an option:");
+            Console.WriteLine("1) Create New Character");
+            Console.WriteLine("2) View Saved Character");
+            Console.WriteLine("3) Exit");
+            Console.Write("Select and option:");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    NewChar();
+                    return true;
+                case "2":
+                    SavedChar();
+                    return true;
+                case "3":
+                    return false;
+                default:
+                    return false;
+            }
         }
-
-        private static 
-
     }
 }
