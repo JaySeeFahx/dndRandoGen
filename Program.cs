@@ -17,21 +17,22 @@ namespace dndRandoGen
         }
         private static bool MainMenu()
         {
+            NewCharacter nc = new();
             Console.Clear();
             Console.WriteLine("Welcome Adventurer!");
             Console.WriteLine("Please choose an option:");
             Console.WriteLine("1) Create New Character");
             Console.WriteLine("2) View Saved Character");
             Console.WriteLine("3) Exit");
-            Console.Write("Select and option:");
+            Console.Write("Select an option:");
 
             switch (Console.ReadLine())
             {
                 case "1":
-                    NewChar();
+                    nc.NewChar();
                     return true;
                 case "2":
-                    SavedChar();
+                    //SavedChar();
                     return true;
                 case "3":
                     return false;
