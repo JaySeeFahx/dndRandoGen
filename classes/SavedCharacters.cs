@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace dndRandoGen
 {
     public class Base
-    { 
+    {
         public List<RandomCharacter> characters { get; set; }
     }
     class SavedCharacters
@@ -27,13 +27,12 @@ namespace dndRandoGen
 
         public bool SaveMenu()
         {
-            
+
 
             Console.WriteLine("From here you can either:");
-            Console.WriteLine("1) Save the current character.");
-            Console.WriteLine("2) View saved characters.");
-            Console.WriteLine("3) Delete saved characters.");
-            Console.WriteLine("4) Return to the previous menu.");
+            Console.WriteLine("1) View saved characters.");
+            Console.WriteLine("2) Delete saved characters.");
+            Console.WriteLine("3) Return to the previous menu.");
             Console.Write("Now, which do you choose... :");
 
             string input = Console.ReadLine();
@@ -46,8 +45,6 @@ namespace dndRandoGen
                 case 2:
                     return true;
                 case 3:
-                    return true;
-                case 4:
                     Console.Clear();
                     return false;
                 default:
@@ -56,20 +53,22 @@ namespace dndRandoGen
                     return true;
 
             }
+        }
+        /*catch (FileNotFoundException ex)    
+            {
+                Console.WriteLine("FILE NOT FOUND: " + ex);
+                File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
+            }
+            catch (JsonException ex)    
+            {
+                Console.WriteLine("INVALID JSON: " + ex);
+                File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
+            }
+            catch (Exception ex)    
+            {
+                Console.WriteLine("ERROR: " + ex);
+                File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
+            }*/
     }
-    /*catch (FileNotFoundException ex)    
-        {
-            Console.WriteLine("FILE NOT FOUND: " + ex);
-            File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
-        }
-        catch (JsonException ex)    
-        {
-            Console.WriteLine("INVALID JSON: " + ex);
-            File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
-        }
-        catch (Exception ex)    
-        {
-            Console.WriteLine("ERROR: " + ex);
-            File.AppendAllText(logLocation, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
-        }*/
 }
+

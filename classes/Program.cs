@@ -29,8 +29,7 @@ namespace dndRandoGen
             Console.Write("Select an option:");
             try
             {
-                string input = Console.ReadLine();
-                int switchCall = int.Parse(input);
+                int switchCall = int.Parse(Console.ReadLine());
 
                 switch (switchCall)
                 {

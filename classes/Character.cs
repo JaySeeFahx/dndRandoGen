@@ -35,6 +35,11 @@ namespace dndRandoGen
             Console.WriteLine($"        {joined}");
             Character.CharacterMenu();
         }
+        //Saves current character display to json file
+        public void SaveChar()
+        {
+
+        }
     }
 
     //Creates new character
@@ -50,7 +55,6 @@ namespace dndRandoGen
         public static bool CharacterMenu()
         {
             RandomCharacter randChar = new();
-            SavedCharacters savedChar = new();
             Console.WriteLine("\nThe fates have brought forth your character!");
             Console.WriteLine("Would you like to:");
             Console.WriteLine("1) Reroll this character.");
@@ -58,8 +62,7 @@ namespace dndRandoGen
             Console.WriteLine("3) Return to the previous menu.");
             Console.Write("Choose wisely... :");
 
-            string input = Console.ReadLine();
-            int switchCall = int.Parse(input);
+            int switchCall = int.Parse(Console.ReadLine());
 
             switch (switchCall)
             {
@@ -68,8 +71,7 @@ namespace dndRandoGen
                     randChar.NewChar(); //random character generator
                     return true;
                 case 2:
-                    Console.Clear();
-                    savedChar.SaveMenu(); //Json file
+                    //randChar.SaveChar();
                     return true;
                 case 3:
                     Console.Clear();
