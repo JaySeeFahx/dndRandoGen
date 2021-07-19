@@ -42,7 +42,7 @@ namespace dndRandoGen
     {
         
         public List<string> races = new() { "Orc", "Human", "Elf", "Gnome", "Halfling" };
-        public List<string> roles = new() { "Fighter", "Bard", "Wizard", "Cleric", "Rogue" };
+        public List<string> roles = new() { "Barbarian", "Bard", "Wizard", "Cleric", "Rogue" };
         public List<string> genders = new() { "Male", "Female", "Non-Binary", "Trans-Masc", "Trans-Femme" };
 
         
