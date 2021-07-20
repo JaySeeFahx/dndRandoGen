@@ -8,8 +8,7 @@ namespace dndRandoGen
 {
     public static class Program
     {
-        static RandomCharacter NewRand = new();
-        static SavedCharacters SavedChar = new();
+        static Generator generator = new();
         
         public static void Main(string[] args)
         {
@@ -24,8 +23,7 @@ namespace dndRandoGen
             Console.WriteLine("\nWelcome Adventurer!");
             Console.WriteLine("Please choose an option:");
             Console.WriteLine("1) Create New Random Character(s)");
-            Console.WriteLine("2) View Saved Character(s)");
-            Console.WriteLine("3) Exit");
+            Console.WriteLine("2) Exit");
             Console.Write("Select an option:");
             try
             {
@@ -35,13 +33,9 @@ namespace dndRandoGen
                 {
                     case 1:
                         Console.Clear();
-                        NewRand.NewChar();
+                        generator.NewChar();
                         return true;
                     case 2:
-                        Console.Clear();
-                        SavedChar.SaveMenu (); //Json file
-                        return true;
-                    case 3:
                         Console.Clear();
                         Console.WriteLine("It's dangerous to go alone. Thanks for finding your new party member(s) with us!\n");
                         return false;
