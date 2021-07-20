@@ -18,7 +18,7 @@ namespace dndRandoGen
                 showMenu = MainMenu();
             }
         }
-        private static bool MainMenu()
+        public static bool MainMenu()
         {
             Console.WriteLine("\nWelcome Adventurer!");
             Console.WriteLine("Please choose an option:");

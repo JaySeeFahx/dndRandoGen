@@ -59,10 +59,11 @@ namespace dndRandoGen
 
         public void Save()
         {
-
-            Console.WriteLine("What is the name of your character?");
+            Console.Write("\nWhat is the name of your character? ");
             string name = Console.ReadLine();
-            
+            AddToJson(name);
+            Console.WriteLine("\n Thank you! Now returning you to the main menu.");
+            Program.MainMenu();
         }
 
         //updates json file
@@ -110,36 +111,31 @@ namespace dndRandoGen
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
             }
         }
-        public static void AddToJson(string name, Generator randChar /*string race, string role, string gender*/)
+        public static void AddToJson(string name)
         {
             var json = JsonConvert.DeserializeObject<Base>(File.ReadAllText(jsonLoc));
             try 
             {
                 int highestID = 0;
-                foreach (var c in json.characters)
+                /*foreach (RandomCharacter c in json.characters)
                 {
                     if (c.Id > highestID)
                     {
                         highestID = c.Id;
                     }
-                }
-
-                RandomCharacter newChar = new RandomCharacter
-                {
-                    Id = highestID + 1,
-                    Name = name,
-                    Race = race,
-                    Role = role,
-                    Gender = gender
-                };
+                    else 
+                    {
+                        break;
+                    }
+                }*/
 
                 json.characters.Add(new RandomCharacter()
                 {
                     Id = highestID + 1,
                     Name = name,
-                    Race = race,
-                    Role = role,
-                    Gender = gender
+                    Race = Generator.randChar.Race,
+                    Role = Generator.randChar.Role,
+                    Gender = Generator.randChar.Gender
                 });
 
                 string json1 = JsonConvert.SerializeObject(json, Formatting.Indented);

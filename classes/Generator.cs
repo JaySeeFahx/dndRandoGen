@@ -8,7 +8,11 @@ namespace dndRandoGen
 {
     class Generator
     {
-        static RandomCharacter randChar = new();
+        private static readonly RandomCharacter _random = new();
+        public static RandomCharacter randChar
+        {
+            get { return _random; }
+        }
 
         public List<string> races = new() { "Orc", "Human", "Elf", "Gnome", "Halfling" };
         public List<string> roles = new() { "Barbarian", "Bard", "Wizard", "Cleric", "Rogue" };
