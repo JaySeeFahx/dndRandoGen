@@ -110,9 +110,58 @@ namespace dndRandoGen
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
             }
         }
-        public static void AddToJson()
-        { 
-        
+        public static void AddToJson(string name, Generator randChar /*string race, string role, string gender*/)
+        {
+            var json = JsonConvert.DeserializeObject<Base>(File.ReadAllText(jsonLoc));
+            try 
+            {
+                int highestID = 0;
+                foreach (var c in json.characters)
+                {
+                    if (c.Id > highestID)
+                    {
+                        highestID = c.Id;
+                    }
+                }
+
+                RandomCharacter newChar = new RandomCharacter
+                {
+                    Id = highestID + 1,
+                    Name = name,
+                    Race = race,
+                    Role = role,
+                    Gender = gender
+                };
+
+                json.characters.Add(new RandomCharacter()
+                {
+                    Id = highestID + 1,
+                    Name = name,
+                    Race = race,
+                    Role = role,
+                    Gender = gender
+                });
+
+                string json1 = JsonConvert.SerializeObject(json, Formatting.Indented);
+                File.WriteAllText(jsonLoc, json1);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": Item added to Characters");
+            }
+
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("FILE NOT FOUND: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine("INVALID JSON: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
+            }
         }
 
         public static void RemoveFromJson()
@@ -121,21 +170,4 @@ namespace dndRandoGen
         }
     }
 }
-
-/*catch (FileNotFoundException ex)
-    {
-        Console.WriteLine("FILE NOT FOUND: " + ex);
-        File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
-    }
-    catch (JsonException ex)
-    {
-        Console.WriteLine("INVALID JSON: " + ex);
-        File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("ERROR: " + ex);
-        File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
-    }
-*/
 
