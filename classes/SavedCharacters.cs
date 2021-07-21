@@ -14,6 +14,7 @@ namespace dndRandoGen
         private static string jsonLoc = "..\\..\\..\\data\\SavedCharacters.json";
         private static string logLoc = "..\\..\\..\\data\\log.txt";
 
+
         public void Display()
         {
             bool showMenu = true;
@@ -117,7 +118,7 @@ namespace dndRandoGen
             try 
             {
                 int highestID = 0;
-                /*foreach (RandomCharacter c in json.characters)
+                foreach (RandomCharacter c in json.characters)
                 {
                     if (c.Id > highestID)
                     {
@@ -127,8 +128,13 @@ namespace dndRandoGen
                     {
                         break;
                     }
-                }*/
+                }
 
+                if (json.characters == null)
+                {
+                    json.characters = new List<RandomCharacter>();
+                }
+                
                 json.characters.Add(new RandomCharacter()
                 {
                     Id = highestID + 1,
