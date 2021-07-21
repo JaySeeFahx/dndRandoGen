@@ -46,6 +46,7 @@ namespace dndRandoGen
                     Display();
                     return true;
                 case 3:
+                    TakeOut();
                     Display();
                     return true;
                 case 4:
@@ -60,9 +61,23 @@ namespace dndRandoGen
 
         public void Save()
         {
-            Console.Write("\nWhat is the name of your character? ");
+            Console.Write("\n What is the name of your character? ");
             string name = Console.ReadLine();
             AddToJson(name);
+            Console.WriteLine("\n Thank you! Now returning you to the main menu.");
+            Program.MainMenu();
+        }
+
+        public void TakeOut()
+        {
+            Console.WriteLine("\n Please use the Id# of the character you would like to remove.");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("\n Are you sure you want to remove #{0}: y/n", id);
+            string input = Console.ReadLine();
+            if (input == "y")
+            {
+                RemoveFromJson(id);
+            }
             Console.WriteLine("\n Thank you! Now returning you to the main menu.");
             Program.MainMenu();
         }
@@ -82,7 +97,7 @@ namespace dndRandoGen
                         {
                             foreach (var prop in c.GetType().GetProperties())
                             {
-                                Console.WriteLine("{0} -> {1}", prop.Name, prop.GetValue(c, null));
+                                Console.WriteLine(" \n{0}: {1}", prop.Name, prop.GetValue(c, null));
                             }
                         }
                     }
@@ -166,9 +181,44 @@ namespace dndRandoGen
             }
         }
 
-        public static void RemoveFromJson()
+        public static void RemoveFromJson(int num)
         {
+            int id = num;
+            try
+            {
+                var json = JsonConvert.DeserializeObject<Base>(File.ReadAllText(jsonLoc));
+                string json1 = "";
 
+                foreach (var c in json.characters)
+                {
+                    if (c.Id == id)
+                    {
+                        json.characters.Remove(c);
+                        Console.WriteLine("Character Removed");
+                        break;
+                    }
+                }
+
+                json1 = JsonConvert.SerializeObject(json, Formatting.Indented);
+                File.WriteAllText(jsonLoc, json1);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": Item removed from Needles");
+                return;
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("FILE NOT FOUND: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine("INVALID JSON: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
+            }
         }
     }
 }
