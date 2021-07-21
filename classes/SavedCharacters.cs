@@ -11,8 +11,8 @@ namespace dndRandoGen
     }
     class SavedCharacters
     {
-        private static string jsonLoc = "..\\..\\..\\data\\SavedCharacters.json";
-        private static string logLoc = "..\\..\\..\\data\\log.txt";
+        private static string jsonLoc = "data\\SavedCharacters.json";
+        private static string logLoc = "data\\log.txt";
 
 
         public void Display()
