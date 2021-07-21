@@ -14,9 +14,9 @@ namespace dndRandoGen
             get { return _random; }
         }
 
-        public List<string> races = new() { "Orc", "Human", "Elf", "Gnome", "Halfling" };
-        public List<string> roles = new() { "Barbarian", "Bard", "Wizard", "Cleric", "Rogue" };
-        public List<string> genders = new() { "Male", "Female", "Non-Binary", "Trans-Masc", "Trans-Femme" };
+        public List<string> races = new() { "Orc", "Human", "Elf", "Gnome", "Halfling", "Half-Orc", "Half-Elf"};
+        public List<string> roles = new() { "Barbarian", "Bard", "Wizard", "Cleric", "Rogue", "Warlock", "Fighter", "Druid", "Sorcerer"};
+        public List<string> genders = new() { "Male", "Female", "Non-Binary", "Trans-Masc", "Trans-Femme"};
 
         // Randomizes the race, role, and gender lists.
         private static string Randomize(List<string> list)

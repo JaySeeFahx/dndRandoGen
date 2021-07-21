@@ -25,12 +25,11 @@ namespace dndRandoGen
         }
         public bool SaveMenu()
         {
-            Console.WriteLine("\nFrom here you can either:");
+            Console.WriteLine("\n From here you can either:");
             Console.WriteLine("1) Save current character.");
-            Console.WriteLine("2) View saved characters.");
-            Console.WriteLine("3) Delete saved characters.");
-            Console.WriteLine("4) Return to main menu.");
-            Console.Write("Now, which do you choose... :");
+            Console.WriteLine("2) Delete saved characters.");
+            Console.WriteLine("3) Return to main menu.");
+            Console.Write(" Now, which do you choose... :");
 
             string input = Console.ReadLine();
             int switchCall = int.Parse(input);
@@ -43,17 +42,14 @@ namespace dndRandoGen
                     return true;
                 case 2:
                     SeeList();
-                    Display();
-                    return true;
-                case 3:
                     TakeOut();
                     Display();
                     return true;
-                case 4:
+                case 3:
                     Console.Clear();
                     return false;
                 default:
-                    Console.WriteLine("Please choose carefully! The option you chose isn't valid. Press any key to return to the main menu!\n");
+                    Console.WriteLine(" Please choose carefully! The option you chose isn't valid. Press any key to return to the main menu!\n");
                     Console.ReadKey();
                     return true;
             }
@@ -72,7 +68,7 @@ namespace dndRandoGen
         {
             Console.WriteLine("\n Please use the Id# of the character you would like to remove.");
             int id = int.Parse(Console.ReadLine());
-            Console.WriteLine("\n Are you sure you want to remove #{0}: y/n", id);
+            Console.WriteLine("\n Are you sure you want to remove #{0}? \n y/n: ", id);
             string input = Console.ReadLine();
             if (input == "y")
             {
@@ -97,33 +93,33 @@ namespace dndRandoGen
                         {
                             foreach (var prop in c.GetType().GetProperties())
                             {
-                                Console.WriteLine(" \n{0}: {1}", prop.Name, prop.GetValue(c, null));
+                                Console.WriteLine("    {0}: {1}", prop.Name, prop.GetValue(c, null));
                             }
                         }
                     }
                     else 
                     {
-                        Console.WriteLine("There are currently no characters in the save file.");
+                        Console.WriteLine(" There are currently no characters in the save file.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("There are currently no files for a saved character.");
+                    Console.WriteLine(" There are currently no files for a saved character.");
                 }
             }
             catch (FileNotFoundException ex)    
             {
-                Console.WriteLine("FILE NOT FOUND: " + ex);
+                Console.WriteLine(" FILE NOT FOUND: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
             }
             catch (JsonException ex)    
             {
-                Console.WriteLine("INVALID JSON: " + ex);
+                Console.WriteLine(" INVALID JSON: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
             }
             catch (Exception ex)    
             {
-                Console.WriteLine("ERROR: " + ex);
+                Console.WriteLine(" ERROR: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
             }
         }
@@ -166,17 +162,17 @@ namespace dndRandoGen
 
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine("FILE NOT FOUND: " + ex);
+                Console.WriteLine(" FILE NOT FOUND: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
             }
             catch (JsonException ex)
             {
-                Console.WriteLine("INVALID JSON: " + ex);
+                Console.WriteLine(" INVALID JSON: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ERROR: " + ex);
+                Console.WriteLine(" ERROR: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
             }
         }
@@ -194,7 +190,7 @@ namespace dndRandoGen
                     if (c.Id == id)
                     {
                         json.characters.Remove(c);
-                        Console.WriteLine("Character Removed");
+                        Console.WriteLine(" Character Removed");
                         break;
                     }
                 }
@@ -206,17 +202,17 @@ namespace dndRandoGen
             }
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine("FILE NOT FOUND: " + ex);
+                Console.WriteLine(" FILE NOT FOUND: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FILE NOT FOUND: " + ex);
             }
             catch (JsonException ex)
             {
-                Console.WriteLine("INVALID JSON: " + ex);
+                Console.WriteLine(" INVALID JSON: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": INVALID JSON: " + ex);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ERROR: " + ex);
+                Console.WriteLine(" ERROR: " + ex);
                 File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
             }
         }

@@ -23,7 +23,8 @@ namespace dndRandoGen
             Console.WriteLine("\nWelcome Adventurer!");
             Console.WriteLine("Please choose an option:");
             Console.WriteLine("1) Create New Random Character(s)");
-            Console.WriteLine("2) Exit");
+            Console.WriteLine("2) View List of Characters");
+            Console.WriteLine("3) Exit");
             Console.Write("Select an option:");
             try
             {
@@ -36,6 +37,10 @@ namespace dndRandoGen
                         generator.NewChar();
                         return true;
                     case 2:
+                        Console.Clear();
+                        SavedCharacters.SeeList();
+                        return true;
+                    case 3:
                         Console.Clear();
                         Console.WriteLine("It's dangerous to go alone. Thanks for finding your new party member(s) with us!\n");
                         return false;

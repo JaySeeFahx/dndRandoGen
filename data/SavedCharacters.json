@@ -1,3 +1,11 @@
 {
-  "characters": []
+  "characters": [
+    {
+      "Id": 1,
+      "Name": "Kiernan",
+      "Race": "Half-Orc",
+      "Role": "Cleric",
+      "Gender": "Trans-Masc"
+    }
+  ]
 }
