@@ -59,9 +59,12 @@ namespace dndRandoGen
         {
             Console.Write("\n What is the name of your character? ");
             string name = Console.ReadLine();
-            AddToJson(name);
-            Console.WriteLine("\n Thank you! Now returning you to the main menu.");
-            Program.MainMenu();
+            if (name != null)
+            {
+                AddToJson(name);
+                Console.WriteLine("\n Thank you! Now returning you to the main menu.");
+                Program.MainMenu();
+            }
         }
 
         public void TakeOut()
@@ -91,6 +94,7 @@ namespace dndRandoGen
                     {
                         foreach (var c in json.characters)
                         {
+                            Console.WriteLine("\n");
                             foreach (var prop in c.GetType().GetProperties())
                             {
                                 Console.WriteLine("    {0}: {1}", prop.Name, prop.GetValue(c, null));
@@ -197,7 +201,7 @@ namespace dndRandoGen
 
                 json1 = JsonConvert.SerializeObject(json, Formatting.Indented);
                 File.WriteAllText(jsonLoc, json1);
-                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": Item removed from Needles");
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": Character removed.");
                 return;
             }
             catch (FileNotFoundException ex)

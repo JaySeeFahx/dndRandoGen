@@ -9,7 +9,8 @@ namespace dndRandoGen
     public static class Program
     {
         static Generator generator = new();
-        
+        private static string logLoc = "data\\log.txt";
+
         public static void Main(string[] args)
         {
             bool showMenu = true;
@@ -51,11 +52,12 @@ namespace dndRandoGen
                         return true;
                 }
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
+                Console.WriteLine(" ERROR: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": ERROR: " + ex);
                 throw;
             }
-
         }
     }
 }
