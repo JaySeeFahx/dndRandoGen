@@ -29,29 +29,37 @@ namespace dndRandoGen
             Console.WriteLine("1) Save current character.");
             Console.WriteLine("2) Delete saved characters.");
             Console.WriteLine("3) Return to main menu.");
-            Console.Write(" Now, which do you choose... :");
+            Console.Write(" Now, which do you choose... : ");
 
-            string input = Console.ReadLine();
-            int switchCall = int.Parse(input);
-
-            switch (switchCall)
+            try
             {
-                case 1:
-                    Save();
-                    Display();
-                    return true;
-                case 2:
-                    SeeList();
-                    TakeOut();
-                    Display();
-                    return true;
-                case 3:
-                    Console.Clear();
-                    return false;
-                default:
-                    Console.WriteLine(" Please choose carefully! The option you chose isn't valid. Press any key to return to the main menu!\n");
-                    Console.ReadKey();
-                    return true;
+                string input = Console.ReadLine();
+                int switchCall = int.Parse(input);
+                switch (switchCall)
+                {
+                    case 1:
+                        Save();
+                        Display();
+                        return true;
+                    case 2:
+                        SeeList();
+                        TakeOut();
+                        Display();
+                        return true;
+                    case 3:
+                        Console.Clear();
+                        return false;
+                    default:
+                        Console.WriteLine(" Please choose carefully! The option you chose isn't valid. Press any key to return to the main menu!\n");
+                        Console.ReadKey();
+                        return true;
+                }
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(" FORMAT ERROR: " + ex);
+                File.AppendAllText(logLoc, Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": FPRMAT ERROR: " + ex);
+                return true;
             }
         }
 

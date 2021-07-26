@@ -19,7 +19,7 @@ namespace dndRandoGen
             Console.WriteLine("1) Reroll this character");
             Console.WriteLine("2) Go to save menu");
             Console.WriteLine("3) Return to the previous menu");
-            Console.Write("Choose wisely... :");
+            Console.Write("Choose wisely... : ");
 
             int switchCall = int.Parse(Console.ReadLine());
 
